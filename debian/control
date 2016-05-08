@@ -2,7 +2,7 @@ Source: treefrog-framework
 Section: libs
 Priority: optional
 Maintainer: sysmocom s.m.f.c. GmbH <info@sysmocom.de>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 8.0.0), qt5-default, g++, make
 Standards-Version: 3.9.3
 
 Package: treefrog-framework

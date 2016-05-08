@@ -1,2 +1,4 @@
-etc/default/files
-usr/bin/files
+usr/bin/*
+usr/include/*
+usr/lib/*
+usr/share/*

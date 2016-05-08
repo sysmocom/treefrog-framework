@@ -9,26 +9,22 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+export QT_SELECT := qt5
+
 %:
-	dh $@ --with autoreconf --fail-missing
+	dh $@
 
 override_dh_strip:
 	dh_strip --dbg-package=treefrog-framework-dbg
 
-override_dh_install:
-	#rm some/files
-	dh_install
-
-override_dh_autoreconf:
-	echo "skipping autoreconf"
-
 override_dh_auto_configure:
+	# Run the real configure
 	./configure --prefix=/usr
+	# And a fake qmake to create a toplevel makefile
+	qmake all.pro
 
-override_dh_auto_build:
-	make -C src
-	INSTALL_ROOT=$(CURDIR)/debian/tmp make -C src install
-	make -C tools
-	INSTALL_ROOT=$(CURDIR)/debian/tmp make -C tools install
+override_dh_shlibdeps:
+	dh_shlibdeps -l$(shell pwd)/usr/lib
+
 
 # vim: tabstop=8 shiftwidth=8 noexpandtab
